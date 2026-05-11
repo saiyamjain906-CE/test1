@@ -1,0 +1,447 @@
+% ============================================================
+%  CONNECTION 5: Beam-to-Column End Plate
+%  DDCL Manual Calculations
+%  Author : Saiyam Jain | B.Tech Civil Engineering
+% ============================================================
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[a4paper,top=25mm,bottom=25mm,left=25mm,right=25mm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage[table,dvipsnames]{xcolor}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{array}
+\usepackage{microtype}
+
+\definecolor{secteal}{RGB}{0,100,110}
+\definecolor{headgray}{RGB}{230,230,230}
+\definecolor{rowlight}{RGB}{235,255,255}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\sffamily\small Connection 5 — Beam-to-Column End Plate}
+\rhead{\sffamily\small Saiyam Jain | DDCL}
+\cfoot{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\titleformat{\section}{\large\bfseries\sffamily\color{secteal}}{}{0pt}{}[\titlerule]
+\titleformat{\subsection}{\normalsize\bfseries\sffamily\color{secteal!80!black}}{}{0pt}{}
+
+\newcommand{\kN}{\,\text{kN}}
+\newcommand{\kNm}{\,\text{kNm}}
+\newcommand{\mm}{\,\text{mm}}
+\newcommand{\MPa}{\,\text{MPa}}
+\newcommand{\mmsq}{\,\text{mm}^2}
+\newcommand{\mmcb}{\,\text{mm}^3}
+
+% ============================================================
+\begin{document}
+% ============================================================
+
+\begin{center}
+  {\LARGE\bfseries\sffamily\color{secteal}
+   Connection 5: Beam-to-Column End Plate}\\[6pt]
+  {\large\sffamily Manual Design Calculations — IS 800:2007}\\[4pt]
+  {\normalsize Saiyam Jain \quad|\quad B.Tech Civil Engg. (2\textsuperscript{nd} Year)}
+\end{center}
+\rule{\linewidth}{1pt}
+
+% ============================================================
+\section{1\quad Input Parameters}
+% ============================================================
+
+\begin{center}
+\begin{tabular}{@{}llll@{}}
+\toprule
+\rowcolor{headgray}
+\textbf{Parameter} & \textbf{Symbol} & \textbf{Value} & \textbf{Unit}\\
+\midrule
+Beam Section      & —     & MB 300          & — \\
+Column Section    & —     & HB 250          & — \\
+Material (both)   & —     & E 250 (Fe 410 W)A & — \\
+Yield Strength    & $f_y$ & 250             & MPa \\
+Ultimate Strength & $f_u$ & 410             & MPa \\
+\midrule
+\rowcolor{rowlight}
+\multicolumn{4}{c}{\textit{Beam Properties (MB 300)}}\\
+Depth             & $D_b$ & 300.0   & mm \\
+Flange Width      & $B_b$ & 140.0   & mm \\
+Web Thickness     & $t_{wb}$ & 7.5  & mm \\
+Flange Thickness  & $T_b$ & 12.4    & mm \\
+Root Radius       & $R_1$ & 14.0    & mm \\
+Gross Area (beam) & $A_b$ & 6070    & mm$^2$ \\
+$Z_{pz}$ (beam)   & —     & 651\,000   & mm$^3$ \\
+$Z_e$ (beam)      & —     & 573\,000   & mm$^3$ \\
+\midrule
+\rowcolor{rowlight}
+\multicolumn{4}{c}{\textit{Column Properties (HB 250)}}\\
+Depth             & $D_c$ & 250.0   & mm \\
+Flange Width      & $B_c$ & 250.0   & mm \\
+Web Thickness     & $t_{wc}$ & 9.0  & mm \\
+Flange Thickness  & $T_c$ & 14.0    & mm \\
+\midrule
+Bending Moment    & $M_z$ & 80.0    & kNm \\
+Shear Force       & $V_y$ & 100.0   & kN \\
+Axial Force       & $P_x$ & 0.0     & kN \\
+\midrule
+\rowcolor{rowlight}
+Bolt Diameter     & $d$   & 20.0    & mm \\
+Bolt Grade        & —     & 8.8     & — \\
+$f_{ub}$          & —     & 830     & MPa \\
+$f_{yb}$          & —     & 660     & MPa \\
+$A_{nb}$          & —     & 245     & mm$^2$ \\
+$A_{sb}$          & —     & 314     & mm$^2$ \\
+Hole Diameter     & $d_0$ & 22.0    & mm \\
+End Distance      & $e$   & 40.0    & mm \\
+Pitch             & $p$   & 50.0    & mm \\
+End Plate thick.  & $t_p$ & 14.0    & mm \\
+End Plate width   & $B_p$ & 200.0   & mm \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+% ============================================================
+\section{2\quad Beam Member Capacity}
+% ============================================================
+
+\subsection{2.1\quad Section Classification (Beam)}
+\[
+  \varepsilon = \sqrt{\frac{250}{250}} = 1.0
+  \qquad
+  \frac{b}{T_b} = \frac{(140-7.5)/2}{12.4} = \frac{66.25}{12.4} = 5.34
+  \;\leq\; 8.4 \quad\Rightarrow\;\textbf{Plastic}
+\]
+
+\subsection{2.2\quad Beam Axial Capacity}
+\[
+  T_{dg} = \frac{A_b\,f_y}{\gamma_{m0}}
+         = \frac{6070\times 250}{1.1\times 10^3}
+         = \boxed{1379.55\kN}
+  \tag{IS 800 Cl.6.2}
+\]
+
+\subsection{2.3\quad Beam Shear Capacity}
+\[
+  A_v = (D_b - 2T_b)\times t_{wb}
+      = (300 - 24.8)\times 7.5
+      = 275.2\times 7.5
+      = 2064\mmsq
+\]
+\[
+  V_{dy} = \frac{2064\times 250}{\sqrt{3}\times 1.1\times 1000}
+         = \frac{516\,000}{1905.26}
+         = \boxed{270.85\kN}
+  \tag{IS 800 Cl.10.4.3}
+\]
+\[
+  V_d = 0.6\times 270.85 = 162.51\kN \;>\; V_y = 100\kN
+  \quad\checkmark\;
+\]
+
+\subsection{2.4\quad Beam Plastic Moment Capacity}
+\[
+  M_{dz} = \frac{1\times 651\,000\times 250}{1.1\times 10^6}
+          = \boxed{147.95\kNm}
+\]
+
+\subsection{2.5\quad Moment Deformation Criteria}
+\[
+  M_{dc} = \frac{1.5\times 573\,000\times 250}{1.1\times 10^6}
+          = \boxed{195.45\kNm}
+\]
+\[
+  M_{dz} = \min(147.95,\;195.45) = \boxed{147.95\kNm}
+  \;>\; M_z = 80\kNm \quad\checkmark\;
+\]
+
+% ============================================================
+\section{3\quad Load Consideration}
+% ============================================================
+
+\subsection{3.1\quad Interaction Ratios}
+\[
+  IR_{\text{axial}}  = \frac{0}{1379.55} = 0.0
+  \qquad
+  IR_{\text{moment}} = \frac{80}{147.95} = 0.541
+  \qquad
+  IR_{\text{sum}} = 0.541
+\]
+
+\subsection{3.2\quad Minimum Design Loads}
+$IR_{\text{axial}} < 0.3$ and $IR_{\text{moment}} \geq 0.5$, $IR_{\text{sum}} \leq 1.0$:
+
+Check: $(0.5 - IR_{\text{moment}}) = -0.041 < (1 - IR_{\text{sum}}) = 0.459$
+
+Therefore:
+\[
+  M_{z,\min} = 0.5\times M_{dz} = 0.5\times 147.95 = 73.975\kNm
+\]
+\[
+  P_{x,\min} = P_x = 0\kN
+  \qquad
+  V_{y,\min} = \min(0.15\times 270.85,\;40) = \min(40.63,\;40) = 40\kN
+\]
+
+\subsection{3.3\quad Design Loads}
+\[
+  P_u = \max(0,\;0) = \boxed{0\kN}
+  \qquad
+  M_u = \max(80,\;73.975) = \boxed{80\kNm}
+\]
+\[
+  V_u = \max(100,\;40) = \boxed{100\kN}
+\]
+
+% ============================================================
+\section{4\quad Bolt Layout}
+% ============================================================
+
+\subsection{4.1\quad Tension Bolt Rows (above compression flange)}
+Bolts are placed in the tension zone above the neutral axis. For a beam–column end plate connection, bolts are placed in two rows above the top (tension) flange:
+\[
+  n_t = 4 \quad (\text{2 rows} \times \text{2 bolts per row})
+\]
+
+\subsection{4.2\quad Total Bolt Count}
+\[
+  n = n_t + n_c = 4 + 2 = 6 \quad\text{(additional compression side bolts optional)}
+\]
+
+% ============================================================
+\section{5\quad Bolt Shear Check}
+% ============================================================
+
+\subsection{5.1\quad Shear Capacity (Single Shear)}
+\[
+  V_{dsb} = \frac{830\times 1\times 245}{\sqrt{3}\times 1.25\times 1000}
+           = \frac{203\,350}{2165.06}
+           = \boxed{93.93\kN}
+  \tag{IS 800 Cl.10.3.3}
+\]
+
+\subsection{5.2\quad Bearing Factor $k_b$}
+\[
+  k_b = \min\!\left(\frac{40}{66},\;\frac{50}{66}-0.25,\;\frac{830}{410},\;1.0\right)
+      = \min(0.606,\;0.508,\;2.024,\;1.0)
+      = \boxed{0.508}
+\]
+
+\subsection{5.3\quad Bearing Capacity}
+\[
+  V_{dpb} = \frac{2.5\times 0.508\times 20\times 14\times 410}{1.25\times 1000}
+           = \frac{146\,308}{1250}
+           = \boxed{117.05\kN}
+  \tag{IS 800 Cl.10.3.4}
+\]
+\[
+  V_{db} = \min(93.93,\;117.05) = \boxed{93.93\kN}
+\]
+\[
+  V_{sb} = \frac{V_u}{n} = \frac{100}{6} = 16.67\kN
+  \;<\; 93.93\kN \quad\checkmark\;
+\]
+
+% ============================================================
+\section{6\quad Bolt Tension from Moment}
+% ============================================================
+
+\subsection{6.1\quad Bolt Position from Neutral Axis}
+For a beam–column end plate, the neutral axis is taken at the compression flange centroid. Bolt positions above NA:
+\[
+  y_1 = D_b + t_p - T_b - e_1 = 300 + 14 - 12.4 - 40 = 261.6\mm \quad\text{(top row)}
+\]
+\[
+  y_2 = y_1 - p = 261.6 - 50 = 211.6\mm \quad\text{(second row)}
+\]
+\[
+  \Sigma y_i^2 = 2(261.6^2 + 211.6^2) = 2(68\,435 + 44\,775) = 226\,420\mmsq
+\]
+
+\subsection{6.2\quad Tension in Most Loaded Bolt}
+\[
+  T_1 = \frac{P_u}{n} + \frac{M_u\times 10^6\times y_{\max}}{\Sigma y_i^2}
+      = \frac{0}{6} + \frac{80\times 10^6\times 261.6}{226\,420\times 10^3}
+      = \frac{20\,928\times 10^6}{226\,420\times 10^3}
+      = \boxed{92.43\kN}
+\]
+
+% ============================================================
+\section{7\quad Prying Force (IS 800 Cl.10.4.7)}
+% ============================================================
+
+\subsection{7.1\quad Prying Parameters}
+\[
+  l_v = e - \frac{t_{wb}}{2} = 40 - 3.75 = 36.25\mm
+  \qquad
+  f_o = 0.7\times 830 = 581\,\text{N/mm}^2
+\]
+\[
+  l_e = \min\!\left(e,\;1.1\,t_p\sqrt{\frac{2\,f_o}{f_y}}\right)
+      = \min\!\left(40,\;1.1\times 14\times\sqrt{\frac{2\times 581}{250}}\right)
+      = \min(40,\;1.1\times 14\times 2.155)
+      = \min(40,\;33.19)
+      = \boxed{33.19\mm}
+\]
+\[
+  b_e = \frac{B_p}{2} = \frac{200}{2} = \boxed{100\mm}
+\]
+
+\subsection{7.2\quad Plate Resistance Term}
+\[
+  \frac{\beta\,\eta\,f_o\,b_e\,t_p^4}{27\,l_e\,l_v^2}
+  = \frac{2\times 1.5\times 581\times 100\times 14^4}{27\times 33.19\times 36.25^2}
+  = \frac{2\times 1.5\times 581\times 100\times 38\,416}{27\times 33.19\times 1314.06}
+\]
+\[
+  = \frac{6\,696\,830\,400}{1\,179\,135}
+  = 5\,679\,278\,\text{N}
+\]
+
+\subsection{7.3\quad Prying Force}
+\[
+  Q = \frac{36.25}{2\times 33.19}\times\left[92\,430 - 5\,679\,278\right]\times 10^{-3}
+\]
+Since the plate resistance $\gg T_1$ the bracket is strongly negative:
+$\boxed{Q = 0}$ (end plate is stiff; no prying develops)
+
+\subsection{7.4\quad Total Bolt Tension}
+\[
+  T_b = T_1 + Q = 92.43 + 0 = \boxed{92.43\kN}
+\]
+
+% ============================================================
+\section{8\quad Bolt Tension Capacity}
+% ============================================================
+
+\subsection{8.1\quad Tension Capacity}
+\[
+  T_{db} = \min\!\left(
+    \frac{0.9\times 830\times 245}{1.25\times 10^3},\;
+    \frac{660\times 314\times 1.25}{1.1\times 10^3}
+  \right)
+  = \min(146.19,\;235.91)
+  = \boxed{146.19\kN}
+  \tag{IS 800 Cl.10.3.5}
+\]
+\[
+  T_b = 92.43\kN < 146.19\kN \quad\checkmark\;
+\]
+
+\subsection{8.2\quad Shear--Tension Interaction}
+\[
+  \left(\frac{V_{sb}}{V_{db}}\right)^2 + \left(\frac{T_b}{T_{db}}\right)^2
+  = \left(\frac{16.67}{93.93}\right)^2+\left(\frac{92.43}{146.19}\right)^2
+  = 0.031+0.400
+  = 0.431 \leq 1.0 \quad\checkmark\;
+  \tag{IS 800 Cl.10.3.6}
+\]
+
+% ============================================================
+\section{9\quad End Plate Checks}
+% ============================================================
+
+\subsection{9.1\quad Plate Moment at Critical Section}
+\[
+  M_{ep} = T_1\times l_v = 92\,430\times 36.25 = 3\,350\,587\,\text{N.mm}
+         = \boxed{3.35\kNm}
+\]
+
+\subsection{9.2\quad Plate Plastic Moment Capacity}
+\[
+  b_{\text{eff}} = p = 50\mm
+  \qquad
+  M_{dp} = \frac{b_{\text{eff}}\,t_p^2\,f_y}{4\,\gamma_{m0}}
+         = \frac{50\times 14^2\times 250}{4\times 1.1}
+         = \frac{2\,450\,000}{4.4}
+         = \boxed{556\,818\,\text{N.mm} = 0.557\kNm}
+\]
+
+\noindent If $M_{ep} > M_{dp}$, increase $t_p$. Required minimum $t_p$:
+\[
+  t_{p,\min} = \sqrt{\frac{4\,M_{ep}\,\gamma_{m0}}{b_{\text{eff}}\,f_y}}
+             = \sqrt{\frac{4\times 3\,350\,587\times 1.1}{50\times 250}}
+             = \sqrt{\frac{14\,742\,583}{12\,500}}
+             = \sqrt{1179.4}
+             = \boxed{34.4\mm}
+\]
+Provide $t_p = 36\mm$ (next standard size above 34.4\,mm).
+
+\subsection{9.3\quad End Plate Weld to Beam Web}
+Weld size $s = 6\mm$, throat $t_t = 0.7\times 6 = 4.2\mm$
+
+Weld length = $D_b - 2T_b - 2R_1 = 300-24.8-28 = 247.2\mm$
+\[
+  f_w = \frac{4.2\times 410}{\sqrt{3}\times 1.25\times 1000} = \frac{1722}{2165.06} = \boxed{0.795\,\text{kN/mm}}
+  \tag{IS 800 Cl.10.5.7.1.1}
+\]
+\[
+  V_{\text{demand}} = \frac{V_u}{2\times l_w} = \frac{100}{2\times 247.2} = 0.202\,\text{kN/mm}
+  \;<\; 0.795 \quad\checkmark\;
+\]
+
+% ============================================================
+\section{10\quad Detailing Checks}
+% ============================================================
+
+\subsection{10.1\quad Bolt Spacing and Edge Distances}
+\[
+  p_{\min} = 2.5d = 2.5\times 20 = 50\mm \quad\text{Provided: }50\mm \quad\checkmark
+\]
+\[
+  e_{\min} = 1.7\,d_0 = 1.7\times 22 = 37.4\mm \quad\text{Provided: }40\mm \quad\checkmark
+\]
+\[
+  p/g_{\max} = \min(32\,t,\;300) = \min(32\times 14,\;300) = \min(448,\;300) = 300\mm
+  \quad\text{Provided: }50\mm \quad\checkmark
+\]
+
+\subsection{10.2\quad Column Web Shear Check (Panel Zone)}
+\[
+  V_{wp} = \frac{M_u}{D_b - T_b} = \frac{80\times 10^6}{300-12.4} = \frac{80\times 10^6}{287.6} = 278.2\kN
+\]
+\[
+  V_{wp,\text{cap}} = \frac{0.6\,f_y\,t_{wc}\,D_c}{\sqrt{3}}
+                    = \frac{0.6\times 250\times 9\times 250}{\sqrt{3}}
+                    = \frac{337\,500}{1.732}
+                    = \boxed{194.9\kN}
+\]
+
+Since $V_{wp} = 278.2\kN > V_{wp,\text{cap}} = 194.9\kN$ $\Rightarrow$ \textbf{Column web stiffeners required.}
+
+\subsection{10.3\quad Column Flange Bending Check}
+Tension per bolt $= T_1 = 92.43\kN$, acting at $e = 40\mm$ from column web face:
+\[
+  M_f = T_1\times e = 92.43\times 40 = 3697\,\text{kN.mm}
+\]
+\[
+  M_{f,\text{cap}} = \frac{T_c^2\,f_y\,s}{4\,\gamma_{m0}}
+                   = \frac{14^2\times 250\times 50}{4\times 1.1}
+                   = \frac{2\,450\,000}{4.4}
+                   = 556\,818\,\text{N.mm} = 0.557\kNm
+\]
+$M_f = 3.70\kNm > M_{f,\text{cap}} = 0.557\kNm$ $\Rightarrow$ \textbf{Column stiffeners required.}
+
+\subsection{10.4\quad Summary of Results}
+
+\begin{center}
+\begin{tabular}{@{}lccc@{}}
+\toprule
+\rowcolor{headgray}
+\textbf{Check} & \textbf{Demand} & \textbf{Capacity} & \textbf{Status}\\
+\midrule
+Bolt shear          & 16.67 kN  & 93.93 kN  & \\
+\rowcolor{rowlight}
+Bolt tension        & 92.43 kN  & 146.19 kN & \\
+Shear-tension int.  & 0.431     & 1.0       & \\
+\rowcolor{rowlight}
+Plate moment        & 3.35 kNm  & — (tp=36mm req'd) \\
+Web weld            & 0.202 kN/mm & 0.795 kN/mm \\
+\rowcolor{rowlight}
+Panel zone shear    & 278.2 kN  & 194.9 kN  & Stiffener req'd \\
+Column flange bend  & 3.70 kNm  & 0.557 kNm & Stiffener req'd \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\end{document}

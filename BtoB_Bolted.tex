@@ -1,0 +1,428 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+
+\title{BTB-Bolted}
+\author{Saiyam Jain}
+
+
+% ============================================================
+%  CONNECTION 1: Beam-to-Beam Cover Plate Bolted
+%  DDCL Manual Calculations
+%  Author : Saiyam Jain | B.Tech Civil Engineering
+% ============================================================
+
+
+\newcommand{\kN}{\,\text{kN}}
+\newcommand{\kNm}{\,\text{kNm}}
+\newcommand{\mm}{\,\text{mm}}
+\newcommand{\MPa}{\,\text{MPa}}
+\newcommand{\cmfour}{\,\text{cm}^4}
+\newcommand{\cmthree}{\,\text{cm}^3}
+\newcommand{\mmsq}{\,\text{mm}^2}
+
+
+}
+
+% ============================================================
+
+% ============================================================
+\begin{center}
+  {\LARGE\bfseries\sffamily\color{
+   Connection 1: Beam-to-Beam Cover Plate Bolted}\\[6pt]
+  {\large\sffamily Manual Design Calculations — IS 800:2007}\\[4pt]
+  {\normalsize Saiyam Jain \quad|\quad B.Tech Civil Engg. (2\textsuperscript{nd} Year)}
+\end{center}
+\rule{\linewidth}{1pt}
+
+% ============================================================
+\section{1\quad Input Parameters}
+% ============================================================
+
+\begin{center}
+\begin{tabular}{@{}llll@{}}
+\toprule
+\rowcolor{headgray}
+\textbf{Parameter} & \textbf{Symbol} & \textbf{Value} & \textbf{Unit}\\
+\midrule
+Member Section    & —   & MB 250        & — \\
+Material          & —   & E 250 (Fe 410 W)A & — \\
+Yield Strength    & $f_y$ & 250         & MPa \\
+Ultimate Strength & $f_u$ & 410         & MPa \\
+\midrule
+\rowcolor{rowlight}
+Depth             & $D$   & 250.0        & mm \\
+Flange Width      & $B$   & 125.0        & mm \\
+Web Thickness     & $t_w$ & 6.9          & mm \\
+Flange Thickness  & $T$   & 12.5         & mm \\
+\midrule
+Root Radius       & $R_1$ & 13.0         & mm \\
+Gross Area        & $A$   & 4750         & mm$^2$ \\
+Elastic Modulus   & $Z_e$ & 410\,000     & mm$^3$ \\
+Plastic Modulus   & $Z_p$ & 465\,000     & mm$^3$ \\
+\midrule
+\rowcolor{rowlight}
+Bending Moment    & $M_z$ & 25.0         & kNm \\
+Shear Force       & $V_y$ & 15.0         & kN \\
+Axial Force       & $P_x$ & 0.0          & kN \\
+\midrule
+Bolt Diameter     & $d$   & 10.0         & mm \\
+Bolt Grade        & —     & 6.8          & — \\
+$f_{ub}$          & —     & 600          & MPa \\
+Hole Diameter     & $d_0$ & 12.0         & mm \\
+Gap Between Beams & —     & 3.0          & mm \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+% ============================================================
+\section{2\quad Member Capacity}
+% ============================================================
+
+\subsection{2.1\quad Section Classification}
+\[
+  \varepsilon = \sqrt{\frac{250}{f_y}} = \sqrt{\frac{250}{250}} = 1.0
+\]
+\[
+  \frac{b}{T} = \frac{(B-t_w)/2}{T} = \frac{(125-6.9)/2}{12.5} = \frac{59.05}{12.5} = 4.72
+  \quad \leq \quad 8.4\varepsilon = 8.4 \quad \Rightarrow \textbf{ Plastic}
+\]
+
+\subsection{2.2\quad Axial Capacity of Member}
+\[
+  T_{dg} = \frac{A_g\,f_y}{\gamma_{m0}} = \frac{4750 \times 250}{1.1 \times 10^3}
+  = \boxed{1079.55\kN}
+  \tag{IS 800 Cl.6.2}
+\]
+
+\subsection{2.3\quad Shear Area and Shear Capacity}
+\[
+  A_v = (D - 2T)\times t_w = (250 - 25)\times 6.9 = 225 \times 6.9 = 1552.5\mmsq
+\]
+\[
+  V_{dy} = \frac{A_v\,f_y}{\sqrt{3}\,\gamma_{m0}}
+         = \frac{1552.5 \times 250}{\sqrt{3}\times 1.1 \times 1000}
+         = \frac{388\,125}{1905.26}
+         = \boxed{203.71\kN}
+  \tag{IS 800 Cl.10.4.3}
+\]
+\[
+  V_d = 0.6\,V_{dy} = 0.6 \times 203.71 = \boxed{122.23\kN}
+  \quad\text{(Low shear limit)} \tag{IS 800 Cl.9.2}
+\]
+Since $V_y = 15\kN < 122.23\kN$ $\Rightarrow$ \textbf{Low shear condition governs.}
+
+\subsection{2.4\quad Plastic Moment Capacity}
+\[
+  M_{dz} = \frac{\beta_b\,Z_{pz}\,f_y}{\gamma_{m0}}
+          = \frac{1 \times 465\,000 \times 250}{1.1 \times 10^6}
+          = \boxed{105.68\kNm}
+  \tag{IS 800 Cl.8.2.1.2}
+\]
+
+\subsection{2.5\quad Moment Deformation Criteria}
+\[
+  M_{dc} = \frac{1.5\,Z_e\,f_y}{\gamma_{m0}\times 10^6}
+          = \frac{1.5 \times 410\,000 \times 250}{1.1 \times 10^6}
+          = \boxed{139.77\kNm}
+  \tag{IS 800 Cl.8.2.1.2}
+\]
+\[
+  M_{dz} = \min(105.68,\;139.77) = \boxed{105.68\kNm}
+\]
+
+% ============================================================
+\section{3\quad Load Consideration}
+% ============================================================
+
+\subsection{3.1\quad Interaction Ratios}
+\[
+  IR_{\text{axial}}  = \frac{P_x}{T_{dg}} = \frac{0}{1079.55} = 0.0
+\]
+\[
+  IR_{\text{moment}} = \frac{M_z}{M_{dz}} = \frac{25.0}{105.68} = 0.2366
+\]
+\[
+  IR_{\text{sum}} = 0.0 + 0.2366 = 0.2366
+\]
+
+\subsection{3.2\quad Minimum Design Loads (IS 800 Cl.10.7)}
+Since $IR_{\text{axial}} < 0.3$ \textbf{and} $IR_{\text{moment}} < 0.5$:
+\[
+  P_{x,\min} = 0.3\,T_{dg} = 0.3 \times 1079.55 = 323.86\kN
+\]
+\[
+  M_{z,\min} = 0.5\,M_{dz} = 0.5 \times 105.68 = 52.84\kNm
+\]
+\[
+  V_{y,\min} = \min(0.15\,V_{dy},\;40) = \min(0.15\times 203.71,\;40)
+             = \min(30.56,\;40) = 30.56\kN
+\]
+
+\subsection{3.3\quad Design Loads}
+\[
+  P_u = \max(0,\;323.86) = \boxed{323.86\kN}
+\]
+\[
+  M_u = \max(25.0,\;52.84) = \boxed{52.84\kNm}
+\]
+\[
+  V_u = \max(15.0,\;30.56) = \boxed{30.56\kN}
+\]
+
+\subsection{3.4\quad Web Plastic Section Modulus}
+\[
+  Z_w = \frac{t_w\,(D-2T)^2}{4}
+      = \frac{6.9 \times 225^2}{4}
+      = \frac{6.9 \times 50\,625}{4}
+      = \boxed{87\,328.12\,\text{mm}^3}
+\]
+
+\subsection{3.5\quad Force Carried by Web}
+\[
+  A_w = \frac{(D-2T)\,t_w\,P_u}{A}
+      = \frac{225 \times 6.9 \times 323.86}{4750}
+      = \frac{502\,994}{4750}
+      = \boxed{105.89\kN}
+\]
+\[
+  M_w = \frac{Z_w\,M_u}{Z_{pz}}
+      = \frac{87\,328.12 \times 52.84}{465\,000}
+      = \frac{4\,615\,798}{465\,000}
+      = \boxed{9.92\kNm}
+\]
+
+\subsection{3.6\quad Force Carried by Flange}
+\[
+  A_f = \frac{P_u\,B\,T}{A}
+      = \frac{323.86 \times 125 \times 12.5}{4750}
+      = \frac{506\,031}{4750}
+      = \boxed{106.53\kN}
+\]
+\[
+  M_f = M_u - M_w = 52.84 - 9.92 = \boxed{42.92\kNm}
+\]
+\[
+  F_f = \frac{M_f \times 10^3}{D-T} + A_f
+      = \frac{42\,920}{237.5} + 106.53
+      = 180.71 + 106.53
+      = \boxed{287.24\kN}
+\]
+
+% ============================================================
+\section{4\quad Flange Bolt Check}
+% ============================================================
+
+\subsection{4.1\quad Bolt Properties}
+\[
+  d = 10\mm,\quad f_{ub} = 600\MPa,\quad
+  A_{nb} = 58\mmsq \quad (\text{IS 1367-3})
+\]
+
+\subsection{4.2\quad Bolt Shear Capacity (Single Shear)}
+\[
+  V_{dsb} = \frac{f_{ub}\,n_n\,A_{nb}}{\sqrt{3}\,\gamma_{mb}}
+           = \frac{600 \times 1 \times 58}{\sqrt{3}\times 1.25 \times 1000}
+           = \frac{34\,800}{2165.06}
+           = \boxed{16.07\kN}
+  \tag{IS 800 Cl.10.3.3}
+\]
+
+\subsection{4.3\quad Bearing Factor $k_b$}
+\[
+  k_b = \min\!\left(\frac{e}{3d_0},\;\frac{p}{3d_0}-0.25,\;
+        \frac{f_{ub}}{f_u},\;1.0\right)
+      = \min\!\left(\frac{20}{36},\;\frac{25}{36}-0.25,\;
+        \frac{600}{410},\;1.0\right)
+\]
+\[
+  = \min(0.556,\;0.444,\;1.463,\;1.0) = \boxed{0.444}
+\]
+
+\subsection{4.4\quad Bearing Capacity}
+\[
+  V_{dpb} = \frac{2.5\,k_b\,d\,t\,f_u}{\gamma_{mb}}
+           = \frac{2.5 \times 0.444 \times 10 \times 12.5 \times 410}{1.25 \times 1000}
+           = \frac{56\,812.5}{1250}
+           = \boxed{45.45\kN}
+  \tag{IS 800 Cl.10.3.4}
+\]
+\[
+  V_{db} = \min(V_{dsb},\;V_{dpb}) = \min(16.07,\;45.45) = \boxed{16.07\kN}
+\]
+
+\subsection{4.5\quad Long Joint Reduction Factor}
+\[
+  l_c = 2\times\left[\left(\frac{n_c}{2}-1\right)\times p + e\right] + \text{gap}
+      = 2\times\left[(12-1)\times 25 + 20\right] + 3
+      = 2\times 295 + 3
+      = 593\mm
+\]
+\[
+  15d = 15 \times 10 = 150\mm \quad \Rightarrow \quad l_c = 593 > 150
+  \quad \Rightarrow \text{ long joint applies}
+\]
+\[
+  \beta_{lj} = 1.075 - \frac{l_c}{200\,d}
+             = 1.075 - \frac{593}{2000}
+             = 1.075 - 0.2965
+             = \boxed{0.778}
+  \tag{IS 800 Cl.10.3.3.1}
+\]
+\[
+  V_{rd} = \beta_{lj}\,V_{db} = 0.778 \times 16.07 = \boxed{12.50\kN}
+\]
+
+\subsection{4.6\quad Capacity Check — Flange Bolts}
+Total flange bolts $= n_c \times n_r = 24 \times 2 = 48$
+\[
+  V_{res} = \frac{2\sqrt{V_u^2 + A_u^2}}{n_{\text{bolts}}}
+           = \frac{2\sqrt{0^2 + 287.24^2}}{48}
+           = \frac{2 \times 287.24}{48}
+           = \boxed{11.97\kN}
+\]
+\[
+  V_{res} = 11.97\kN \;<\; V_{rd} = 12.50\kN \quad \checkmark\;\textbf{PASS}
+\]
+
+% ============================================================
+\section{5\quad Web Bolt Check}
+% ============================================================
+
+\subsection{5.1\quad Bolt Shear Capacity (Double Shear)}
+\[
+  V_{dsb} = \frac{600 \times 2 \times 58}{\sqrt{3}\times 1.25 \times 1000}
+           = \frac{69\,600}{2165.06}
+           = \boxed{32.15\kN}
+\]
+
+\subsection{5.2\quad Bearing Capacity (Web Bolt)}
+\[
+  V_{dpb} = \frac{2.5 \times 0.444 \times 10 \times 6.9 \times 410}{1250}
+           = \frac{31\,389}{1250}
+           = \boxed{25.11\kN}
+\]
+\[
+  V_{db} = \min(32.15,\;25.11) = \boxed{25.11\kN}
+\]
+
+\subsection{5.3\quad Bolt Group Geometry}
+\[
+  l_n = g\,(n_c - 1) = 25 \times (4-1) = 75\mm, \quad
+  y_{\max} = \frac{l_n}{2} = \frac{150}{2} = 75\mm
+\]
+\[
+  x_{\max} = p\,\left(\frac{n_r}{2}-1\right)/2 = 25 \times 0.5 = 12.5\mm
+\]
+\[
+  \Sigma r_i^2 = n_r\,\Sigma x_i^2 + n_c\,\Sigma y_i^2
+              = 7\times 312.5 + 2\times 17\,500
+              = 2187.5 + 35\,000
+              = \boxed{37\,187.5\,\text{mm}^2}
+\]
+
+\subsection{5.4\quad Moment Demand on Web Bolt Group}
+\[
+  M_d = \frac{V_u \times e_{cc} + M_w \times 10^6}{10^6}
+      = \frac{30.56 \times 10^3 \times 34 + 9.92 \times 10^6}{10^6}
+      = \frac{1\,039\,040 + 9\,920\,000}{10^6}
+      = \boxed{10.96\kNm}
+\]
+
+\subsection{5.5\quad Bolt Force Components}
+\[
+  v_{bv} = \frac{V_u}{n_r \times n_c/2} = \frac{30.56}{7\times 2} = \boxed{2.18\kN}
+\]
+\[
+  tmh = \frac{M_d \times 10^3 \times y_{\max}}{\Sigma r_i^2}
+      = \frac{10\,960 \times 75}{37\,187.5}
+      = \boxed{22.11\kN}
+\]
+\[
+  tmv = \frac{M_d \times 10^3 \times x_{\max}}{\Sigma r_i^2}
+      = \frac{10\,960 \times 12.5}{37\,187.5}
+      = \boxed{3.68\kN}
+\]
+\[
+  abh = \frac{A_w}{n_r \times n_c/2} = \frac{105.89}{14} = \boxed{7.56\kN}
+\]
+
+\subsection{5.6\quad Resultant Bolt Force}
+\[
+  v_{res} = \sqrt{(v_{bv}+tmv)^2+(tmh+abh)^2}
+          = \sqrt{(2.18+3.68)^2+(22.11+7.56)^2}
+          = \sqrt{34.34+880.31}
+          = \boxed{30.24\kN}
+\]
+\[
+  v_{res} = 30.24\kN \;<\; V_{db} = 32.15\kN \quad \checkmark\;\textbf{PASS}
+\]
+
+% ============================================================
+\section{6\quad Plate Checks}
+% ============================================================
+
+\subsection{6.1\quad Flange Plate Area Check}
+\[
+  \text{Required} = 1.05 \times B \times T = 1.05\times 125\times 12.5 = 1640.62\mmsq
+  \tag{IS 800 Cl.8.6.3.2}
+\]
+\[
+  \text{Provided} = B_{fp}\times t_{fp} = 125\times 14 = 1750\mmsq \;>\; 1640.62
+  \quad\checkmark\;\textbf{PASS}
+\]
+
+\subsection{6.2\quad Member Flange Tension Yielding}
+\[
+  T_{dg} = \frac{B\times T\times f_y}{\gamma_{m0}}
+         = \frac{125\times 12.5\times 250}{1.1\times 10^3}
+         = \boxed{355.11\kN}
+  \tag{IS 800 Cl.6.2}
+\]
+
+\subsection{6.3\quad Member Flange Tension Rupture}
+\[
+  T_{dn} = \frac{0.9\,A_n\,f_u}{\gamma_{m1}}
+         = \frac{0.9\times(125-2\times 12)\times 12.5\times 410}{1.25\times 1000}
+         = \boxed{387.45\kN}
+  \tag{IS 800 Cl.6.3.1}
+\]
+\[
+  T_d = \min(355.11,\;387.45,\;T_{db}) = \boxed{355.11\kN}
+  \;>\; F_f = 287.24\kN \quad\checkmark\;\textbf{PASS}
+\]
+
+\subsection{6.4\quad Web Member Tension Yielding}
+\[
+  T_{dg} = \frac{(D-2T)\times t_w\times f_y}{\gamma_{m0}}
+         = \frac{225\times 6.9\times 250}{1.1\times 10^3}
+         = \boxed{352.84\kN}
+\]
+
+\subsection{6.5\quad Web Member Tension Rupture}
+\[
+  T_{dn} = \frac{0.9\times(225-7\times 12)\times 6.9\times 410}{1.25\times 10^3}
+         = \boxed{315.72\kN}
+\]
+
+\subsection{6.6\quad Web Block Shear Capacity}
+\[
+  T_{db1} = \frac{A_{vg}\,f_y}{\sqrt{3}\,\gamma_{m0}}+\frac{0.9\,A_{tn}\,f_u}{\gamma_{m1}}
+\]
+\[
+  T_{db2} = \frac{0.9\,A_{vn}\,f_u}{\sqrt{3}\,\gamma_{m1}}+\frac{A_{tg}\,f_y}{\gamma_{m0}}
+\]
+\[
+  T_{db} = \min(T_{db1},\;T_{db2}) = \boxed{305.54\kN}
+  \tag{IS 800 Cl.6.4}
+\]
+\[
+  T_d = \min(352.84,\;315.72,\;305.54) = \boxed{305.54\kN}
+  \;>\; A_w = 105.89\kN \quad\checkmark\;\textbf{PASS}
+\]
+
+\end{document}
+
+
+
+
+
